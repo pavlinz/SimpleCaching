@@ -9,7 +9,8 @@ import by.vasilevskiy.simplecaching.data.Restaurant
 import by.vasilevskiy.simplecaching.databinding.RestaurantItemBinding
 import com.bumptech.glide.Glide
 
-class RestaurantAdapter : ListAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(RestaurantComparator()) {
+class RestaurantAdapter :
+    ListAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(RestaurantComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val binding =
