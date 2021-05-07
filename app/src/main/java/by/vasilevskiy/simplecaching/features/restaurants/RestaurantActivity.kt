@@ -3,9 +3,11 @@ package by.vasilevskiy.simplecaching.features.restaurants
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.vasilevskiy.simplecaching.databinding.ActivityRestaurantBinding
+import by.vasilevskiy.simplecaching.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,8 +28,12 @@ class RestaurantActivity : AppCompatActivity() {
                 layoutManager = LinearLayoutManager(this@RestaurantActivity)
             }
 
-            viewModel.restaurants.observe(this@RestaurantActivity,  Observer { restaurants->
-                restaurantAdapter.submitList(restaurants)
+            viewModel.restaurants.observe(this@RestaurantActivity,  Observer { result->
+                restaurantAdapter.submitList(result.data)
+
+                progressBar.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
+                textViewError.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
+                textViewError.text = result.error?.localizedMessage
             })
         }
     }

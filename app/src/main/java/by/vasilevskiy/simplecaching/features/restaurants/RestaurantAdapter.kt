@@ -1,5 +1,6 @@
 package by.vasilevskiy.simplecaching.features.restaurants
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
